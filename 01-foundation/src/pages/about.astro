@@ -1,23 +1,7 @@
 ---
-
+import AppLayout from '../layout/AppLayout.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>About</title>
-	</head>
-	<body>
-		<h1>About</h1>
-
-     <nav>
-      <a href="/">Home</a>
-      <a href="/about">About</a>
-      <a href="/contact">Contact</a>
-    </nav>
-	</body>
-</html>
+<AppLayout title="About">
+  <p>Content about</p>
+</AppLayout>
