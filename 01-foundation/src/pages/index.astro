@@ -6,16 +6,11 @@ import AppLayout from '../layouts/AppLayout.astro';
   <p>Current moment (static): {new Date().toLocaleTimeString()}</p>
   <p>Current moment (dynamic): <span class="current-moment"></span></p>
 
-  <footer>Año: 2024</footer>
-
   <script>
-    const currentYear = new Date().getFullYear();
     const currentTime = new Date().toLocaleTimeString();
 
-    const footerElement = document.querySelector('footer') as HTMLElement;
     const currentTimeElement = document.querySelector('span.current-moment') as HTMLElement;
 
-    footerElement.innerHTML = `Año: ${currentYear}`;
     currentTimeElement.innerHTML = currentTime;
   </script>
 </AppLayout>
