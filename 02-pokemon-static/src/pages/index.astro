@@ -1,18 +1,22 @@
 ---
-import type { IPokemonListResponse } from '../interfaces/pokemon-list.response';
+import PokemonCard from '../components/pokemons/PokemonCard.astro';
+import { queryClient } from '../lib/queryClient';
 import MainLayout from '../layouts/MainLayout.astro';
+import { getPokemonList } from '../lib/services/pokemon.service';
 
-import '../styles/app.css';
-
-const resp = await fetch('https://pokeapi.co/api/v2/pokemon');
-const data = (await resp.json()) as IPokemonListResponse;
-
-console.log('🚀 ~ resp:', resp);
+const data = await queryClient.fetchQuery({
+  queryKey: ['pokemon-list'],
+  queryFn: () => getPokemonList(),
+});
 ---
 
-<MainLayout title="Home">
+<MainLayout title="Home" >
   <h1>List of Pokemons</h1>
-  <ul class="list-disc">
-    {data.results.map((pokemon) => <li>{pokemon.name}</li>)}
-  </ul>
+
+  <section
+    aria-label="list of pokemons"
+    class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 gap-4"
+  >
+    {data.results.map((pokemon) => <PokemonCard {...pokemon} />)}
+  </section>
 </MainLayout>

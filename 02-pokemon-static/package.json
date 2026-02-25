@@ -10,7 +10,9 @@
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.2.1",
+    "@tanstack/query-core": "^5.90.20",
     "astro": "^5.17.1",
+    "axios": "^1.13.5",
     "tailwindcss": "^4.2.1"
   }
 }
