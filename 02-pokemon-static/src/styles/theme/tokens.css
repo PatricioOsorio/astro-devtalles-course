@@ -1,45 +1,42 @@
 :root {
-  --background: 255 255 255;
-  --foreground: 17 24 39;
-  --muted: 107 114 128;
-  --border: 229 231 235;
-  --ring: 59 130 246;
+  --background: var(--color-slate-50);
+  --foreground: var(--color-slate-900);
+  --muted: var(--color-slate-500);
+  --border: var(--color-slate-200);
+  --ring: var(--color-blue-400);
 
-  --primary: 37 99 235;
-  --primary-foreground: 255 255 255;
+  --primary: var(--color-blue-600);
+  --primary-foreground: var(--color-white);
 
-  --card: 255 255 255;
-  --card-foreground: 17 24 39;
-
-  --radius: 0.75rem;
+  --card: var(--color-white);
+  --card-foreground: var(--color-slate-900);
 }
 
 .dark {
-  --background: 10 10 10;
-  --foreground: 245 245 245;
-  --muted: 163 163 163;
-  --border: 39 39 42;
-  --ring: 96 165 250;
+  --background: var(--color-slate-900);
+  --foreground: var(--color-slate-100);
+  --muted: var(--color-slate-400);
+  --border: var(--color-slate-700);
+  --ring: var(--color-blue-300);
 
-  --primary: 96 165 250;
-  --primary-foreground: 10 10 10;
+  --primary: var(--color-blue-400);
+  --primary-foreground: var(--color-slate-950);
 
-  --card: 24 24 27;
-  --card-foreground: 245 245 245;
+  --card: var(--color-slate-800);
+  --card-foreground: var(--color-slate-100);
 }
 
 @theme inline {
-  --color-background: rgb(var(--background));
-  --color-foreground: rgb(var(--foreground));
-  --color-muted: rgb(var(--muted));
-  --color-border: rgb(var(--border));
-  --color-ring: rgb(var(--ring));
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-ring: var(--ring);
 
-  --color-primary: rgb(var(--primary));
-  --color-primary-foreground: rgb(var(--primary-foreground));
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
 
-  --color-card: rgb(var(--card));
-  --color-card-foreground: rgb(var(--card-foreground));
-
-  --radius-md: var(--radius);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
 }
+/* ...existing code... */
