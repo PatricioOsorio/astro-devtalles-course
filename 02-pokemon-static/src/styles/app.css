@@ -1,0 +1,18 @@
+/* Tailwind core */
+@import 'tailwindcss';
+
+/* Tokens */
+@import './theme/tokens.css';
+
+/* Base layer */
+@import './base/base.css';
+@import './base/typography.css';
+
+/*  Components */
+@import './components/buttons.css';
+
+/* Utilities */
+@import './utilities/layout.css';
+
+/* Dark mode by class */
+@custom-variant dark (&:where(.dark, .dark *));

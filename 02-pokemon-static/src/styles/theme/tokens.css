@@ -1,0 +1,45 @@
+:root {
+  --background: 255 255 255;
+  --foreground: 17 24 39;
+  --muted: 107 114 128;
+  --border: 229 231 235;
+  --ring: 59 130 246;
+
+  --primary: 37 99 235;
+  --primary-foreground: 255 255 255;
+
+  --card: 255 255 255;
+  --card-foreground: 17 24 39;
+
+  --radius: 0.75rem;
+}
+
+.dark {
+  --background: 10 10 10;
+  --foreground: 245 245 245;
+  --muted: 163 163 163;
+  --border: 39 39 42;
+  --ring: 96 165 250;
+
+  --primary: 96 165 250;
+  --primary-foreground: 10 10 10;
+
+  --card: 24 24 27;
+  --card-foreground: 245 245 245;
+}
+
+@theme inline {
+  --color-background: rgb(var(--background));
+  --color-foreground: rgb(var(--foreground));
+  --color-muted: rgb(var(--muted));
+  --color-border: rgb(var(--border));
+  --color-ring: rgb(var(--ring));
+
+  --color-primary: rgb(var(--primary));
+  --color-primary-foreground: rgb(var(--primary-foreground));
+
+  --color-card: rgb(var(--card));
+  --color-card-foreground: rgb(var(--card-foreground));
+
+  --radius-md: var(--radius);
+}
