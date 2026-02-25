@@ -1,0 +1,48 @@
+---
+import type { GetStaticPaths } from 'astro';
+import MainLayout from '../../layouts/MainLayout.astro';
+import PokemonCard from '../../components/pokemons/PokemonCard.astro';
+import type { IPokemonResponse } from '../../interfaces/pokemon.response';
+import { queryClient } from '../../lib/queryClient';
+import { queryKeys } from '../../lib/queryKeys';
+import { getPokemonByUrl, getPokemonList } from '../../lib/services/pokemon.service';
+
+export const getStaticPaths = (async () => {
+  const dataPokemons = await queryClient.fetchQuery({
+    queryKey: queryKeys.pokemonList(),
+    queryFn: () => getPokemonList(),
+  });
+
+  const initialPokemons = dataPokemons.results.map((pokemon) => ({
+    params: {
+      name: pokemon.name,
+    },
+    props: {
+      name: pokemon.name,
+      url: pokemon.url,
+    },
+  }));
+
+  return initialPokemons;
+}) satisfies GetStaticPaths;
+
+const { name } = Astro.params;
+const { url } = Astro.props;
+
+const pokemon = await queryClient.fetchQuery<IPokemonResponse>({
+  queryKey: queryKeys.pokemonDetail(name),
+  queryFn: () => getPokemonByUrl(url),
+});
+---
+
+<MainLayout title="Some pokemon">
+  <a href="/">Return</a>
+
+  <h1>{name}</h1>
+
+  <PokemonCard name={name} url={url} />
+
+  <audio controls>
+    <source src={pokemon.cries.latest} type="audio/ogg" />
+  </audio>
+</MainLayout>

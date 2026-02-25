@@ -2,7 +2,7 @@ import type { IPokemonListResponse } from '../../interfaces/pokemon-list.respons
 import type { IPokemonResponse } from '../../interfaces/pokemon.response';
 import { apiClient, mapAxiosError } from '../http/apiClient';
 
-export async function getPokemonList(limit = 20, offset = 0): Promise<IPokemonListResponse> {
+export async function getPokemonList(limit = 50, offset = 0): Promise<IPokemonListResponse> {
   try {
     const { data } = await apiClient.get<IPokemonListResponse>('/pokemon', {
       params: { limit, offset },

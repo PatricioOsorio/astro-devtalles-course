@@ -1,6 +1,7 @@
 ---
 import type { IPokemonResponse } from '../../interfaces/pokemon.response';
 import { queryClient } from '../../lib/queryClient';
+import { queryKeys } from '../../lib/queryKeys';
 import { getPokemonByUrl } from '../../lib/services/pokemon.service';
 
 interface Props {
@@ -11,7 +12,7 @@ interface Props {
 const { name, url } = Astro.props;
 
 const pokemon = await queryClient.fetchQuery<IPokemonResponse>({
-  queryKey: ['pokemon-detail', { name }],
+  queryKey: queryKeys.pokemonDetail(name),
   queryFn: () => getPokemonByUrl(url),
 });
 
@@ -30,8 +31,9 @@ const mainAbilities = pokemon.abilities
   .map((abilityName) => abilityName.replace('-', ' '));
 ---
 
-<article
-  class="flex h-full flex-col rounded-2xl border border-border bg-card p-4 text-card-foreground shadow-sm transition hover:border-primary/40 hover:shadow-md"
+<a
+  class="flex h-full flex-col rounded-2xl border border-border bg-card p-4 text-card-foreground shadow-sm transition hover:border-primary/40 hover:shadow-md no-underline"
+  href={`/pokemons/${name}`}
 >
   <header class="flex items-start justify-between gap-3">
     <h3 class="text-xl font-semibold capitalize leading-tight">{displayName}</h3>
@@ -81,4 +83,4 @@ const mainAbilities = pokemon.abilities
       <p class="mt-3 text-xs text-muted capitalize">Abilities: {mainAbilities.join(', ')}</p>
     )
   }
-</article>
+</a>
