@@ -1,6 +1,6 @@
-import type { IPokemonListResponse } from '../../interfaces/pokemon-list.response';
-import type { IPokemonResponse } from '../../interfaces/pokemon.response';
-import { apiClient, mapAxiosError } from '../http/apiClient';
+import type { IPokemonListResponse } from '@interfaces/pokemon-list.response';
+import type { IPokemonResponse } from '@interfaces/pokemon.response';
+import { apiClient, mapAxiosError } from '@lib/http/apiClient';
 
 export async function getPokemonList(limit = 20, offset = 0): Promise<IPokemonListResponse> {
   try {
