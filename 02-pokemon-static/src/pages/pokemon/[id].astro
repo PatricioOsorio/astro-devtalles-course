@@ -1,12 +1,11 @@
 ---
 import type { GetStaticPaths } from 'astro';
 
-import type { IPokemonResponse } from '../../interfaces/pokemon.response';
 import MainLayout from '../../layouts/MainLayout.astro';
 import { queryClient } from '../../lib/queryClient';
 import { queryKeys } from '../../lib/queryKeys';
-import { getPokemonById, getPokemonList } from '../../lib/services/pokemon.service';
-import PokemonCardDetail from '../../components/pokemons/PokemonCardDetail.astro';
+import { getPokemonList } from '../../lib/services/pokemon.service';
+import PokemonCardPreview from '../../components/pokemons/PokemonCardPreview.astro';
 
 export const getStaticPaths = (async () => {
   const { results: pokemons } = await queryClient.fetchQuery({
@@ -27,13 +26,7 @@ export const getStaticPaths = (async () => {
   return initialPokemons;
 }) satisfies GetStaticPaths;
 
-const { id } = Astro.params;
-const { name } = Astro.props;
-
-const pokemon = await queryClient.fetchQuery<IPokemonResponse>({
-  queryKey: queryKeys.pokemonDetail(id!),
-  queryFn: () => getPokemonById(id!),
-});
+const { name, url } = Astro.props;
 ---
 
 <MainLayout title={name}>
@@ -41,5 +34,5 @@ const pokemon = await queryClient.fetchQuery<IPokemonResponse>({
 
   <h1>{name}</h1>
 
-  <PokemonCardDetail pokemon={pokemon} />
+  <PokemonCardPreview name={name} url={url} />
 </MainLayout>
