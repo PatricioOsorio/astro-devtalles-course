@@ -13,10 +13,9 @@ export async function getPokemonList(limit = 20, offset = 0): Promise<IPokemonLi
   }
 }
 
-export async function getPokemonByUrl(url: string): Promise<IPokemonResponse> {
+export async function getPokemonById(id: string): Promise<IPokemonResponse> {
   try {
-    // Axios soporta URL absoluta aunque haya baseURL.
-    const { data } = await apiClient.get<IPokemonResponse>(url);
+    const { data } = await apiClient.get<IPokemonResponse>(`/pokemon/${id}`);
     return data;
   } catch (error) {
     throw mapAxiosError(error);

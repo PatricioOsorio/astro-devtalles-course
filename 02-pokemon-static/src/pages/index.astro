@@ -1,23 +1,23 @@
 ---
-import PokemonCard from '../components/pokemons/PokemonCard.astro';
-import { queryClient } from '../lib/queryClient';
-import MainLayout from '../layouts/MainLayout.astro';
 import { getPokemonList } from '../lib/services/pokemon.service';
+import { queryClient } from '../lib/queryClient';
 import { queryKeys } from '../lib/queryKeys';
+import MainLayout from '../layouts/MainLayout.astro';
+import PokemonCardPreview from '../components/pokemons/PokemonCardPreview.astro';
 
-const data = await queryClient.fetchQuery({
+const { results: pokemons } = await queryClient.fetchQuery({
   queryKey: queryKeys.pokemonList(),
   queryFn: () => getPokemonList(),
 });
 ---
 
 <MainLayout title="Home">
-  <h1>List of Pokemons</h1>
+  <h1>Home</h1>
 
   <section
     aria-label="list of pokemons"
     class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 gap-4"
   >
-    {data.results.map((pokemon) => <PokemonCard {...pokemon} />)}
+    {pokemons.map((pokemon) => <PokemonCardPreview {...pokemon} hrefMode='name' />)}
   </section>
 </MainLayout>

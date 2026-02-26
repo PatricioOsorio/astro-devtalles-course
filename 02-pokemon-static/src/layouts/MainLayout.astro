@@ -17,23 +17,41 @@ const { title } = Astro.props;
     <meta name="generator" content={Astro.generator} />
 
     <title>{title}</title>
-
-    <ClientRouter />
   </head>
   <body>
+    <nav class="border-b border-border bg-background/90">
+      <div class="page min-h-0! py-3! flex-row items-center justify-between">
+        <a href="/" class="no-underline font-semibold text-foreground">Pokédex</a>
+
+        <div class="flex items-center gap-4 text-sm">
+          <a href="/" class="text-muted hover:text-foreground no-underline">Home</a>
+          <a href="/pokemons/1" class="text-muted hover:text-foreground no-underline"
+            >Pokemons details</a
+          >
+        </div>
+      </div>
+    </nav>
+
     <main class="page">
       <slot />
     </main>
 
-    <script>
-      const userPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      const storedPreference = localStorage.getItem('theme');
+    <ClientRouter />
 
-      if (storedPreference === 'dark' || (storedPreference === null && userPrefersDark)) {
-        document.documentElement.classList.add('dark');
-      } else {
-        document.documentElement.classList.remove('dark');
-      }
+    <script is:inline>
+      const applyTheme = () => {
+        const userPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const storedPreference = localStorage.getItem('theme');
+        const isDark = storedPreference ? storedPreference === 'dark' : userPrefersDark;
+
+        document.documentElement.classList.toggle('dark', isDark);
+
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+      };
+
+      applyTheme();
+
+      document.addEventListener('astro:after-swap', applyTheme);
     </script>
   </body>
 </html>
