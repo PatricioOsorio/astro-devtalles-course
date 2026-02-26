@@ -2,12 +2,15 @@
 import { ClientRouter } from 'astro:transitions';
 
 import '@styles/app.css';
+import { siteInfo } from 'src/consts/site.info';
 
 interface Props {
   title: string;
+  imageOG?: string;
+  descriptionOG?: string;
 }
 
-const { title } = Astro.props;
+const { title = siteInfo.title, descriptionOG = siteInfo.description, imageOG } = Astro.props;
 ---
 
 <html lang="en">
@@ -17,6 +20,15 @@ const { title } = Astro.props;
     <link rel="icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
+
+    <!-- SEO -->
+    <meta name="description" content={descriptionOG} />
+    <meta name="author" content="Patricio Osorio" />
+
+    <!-- OG Meta tags -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={descriptionOG} />
+    <meta property="og:image" content={imageOG} />
 
     <title>{title}</title>
   </head>

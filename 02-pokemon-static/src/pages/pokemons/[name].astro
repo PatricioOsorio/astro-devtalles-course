@@ -31,9 +31,10 @@ const { url } = Astro.props;
 
 const id = url.split('/').at(-2);
 const audioSrc = `https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/${id}.ogg`;
+const imageSrc = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`;
 ---
 
-<MainLayout title={`Detail | ${name}`}>
+<MainLayout title={`Detail | ${name}`} descriptionOG=`Info of ${name}` imageOG={imageSrc}>
   <a href="/">Return</a>
 
   <h1>{name}</h1>
