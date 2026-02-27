@@ -4,6 +4,7 @@ import { queryClient } from "@lib/queryClient";
 import { queryKeys } from "@lib/queryKeys";
 import MainLayout from "@layouts/MainLayout.astro";
 import PokemonCardPreview from "@components/pokemons/PokemonCardPreview.astro";
+import Title from "@components/shared/Title.astro";
 
 
 
@@ -14,7 +15,7 @@ const { results: pokemons } = await queryClient.fetchQuery({
 ---
 
 <MainLayout title="Home">
-  <h1>Home</h1>
+  <Title>Home</Title>
 
   <section
     aria-label="list of pokemons"

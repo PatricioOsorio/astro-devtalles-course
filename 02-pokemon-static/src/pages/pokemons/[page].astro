@@ -6,6 +6,7 @@ import { queryClient } from '@lib/queryClient';
 import { queryKeys } from '@lib/queryKeys';
 import MainLayout from '@layouts/MainLayout.astro';
 import PokemonCardPreview from '@components/pokemons/PokemonCardPreview.astro';
+import Title from '@components/shared/Title.astro';
 
 export const getStaticPaths = (async ({ paginate }) => {
   const limit = 20;
@@ -22,7 +23,7 @@ const { page } = Astro.props;
 ---
 
 <MainLayout title="Home">
-  <h1>Pokemons details</h1>
+  <Title>Pokemons paginated</Title>
 
   <section
     aria-label="list of pokemons"

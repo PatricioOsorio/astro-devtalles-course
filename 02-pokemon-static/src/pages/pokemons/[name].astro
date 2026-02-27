@@ -6,6 +6,7 @@ import { queryClient } from '@lib/queryClient';
 import { queryKeys } from '@lib/queryKeys';
 import MainLayout from '@layouts/MainLayout.astro';
 import PokemonCardPreview from '@components/pokemons/PokemonCardPreview.astro';
+import Title from '@components/shared/Title.astro';
 
 export const getStaticPaths = (async () => {
   const { results: pokemons } = await queryClient.fetchQuery({
@@ -35,9 +36,10 @@ const imageSrc = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprit
 ---
 
 <MainLayout title={`Detail | ${name}`} descriptionOG=`Info of ${name}` imageOG={imageSrc}>
-  <a href="/">Return</a>
+  <!-- <a href="/">Return</a> -->
+  <button class="btn btn--outline self-start" onclick="history.back()">Return</button>
 
-  <h1>{name}</h1>
+  <Title>{name}</Title>
 
   <PokemonCardPreview name={name} url={url} />
 
