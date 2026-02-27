@@ -50,8 +50,9 @@ const imageSrc = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprit
     <button
       type="button"
       class="btn btn--ghost btn--sm"
-      aria-label={`Add ${name} to favorites`}
-      title="Add to favorites"
+      id="btn-favorite"
+      data-name={name}
+      data-id={id}
     >
       <Icon name="heart-outlined" size={20} class="text-primary" />
       <Icon name="heart-filled" size={20} class="hidden text-primary" />
@@ -64,3 +65,20 @@ const imageSrc = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprit
     <source src={audioSrc} type="audio/ogg" />
   </audio>
 </MainLayout>
+
+<script>
+  const App = () => {
+    const $btnFavorite = document.querySelector('#btn-favorite') as HTMLButtonElement;
+
+    if (!$btnFavorite) return;
+    
+    const name = $btnFavorite.dataset.name;
+    const id = $btnFavorite.dataset.id;
+
+    $btnFavorite.addEventListener('click', () => {
+      console.log(name);
+    });
+  };
+
+  document.addEventListener('astro:page-load', () => App());
+</script>
