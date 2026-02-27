@@ -1,7 +1,5 @@
 /* Tailwind core  */
-@import 'tailwindcss/theme' layer(theme);
-@import 'tailwindcss/preflight' layer(base);
-@import 'tailwindcss/utilities' layer(utilities);
+@import 'tailwindcss';
 
 /* Tokens */
 @import './theme/tokens.css';
