@@ -3,6 +3,7 @@ import { ClientRouter } from 'astro:transitions';
 
 import '@styles/app.css';
 import { siteInfo } from 'src/consts/site.info';
+import Navbar from '@components/shared/Navbar.astro';
 
 interface Props {
   title: string;
@@ -33,7 +34,7 @@ const { title = siteInfo.title, descriptionOG = siteInfo.description, imageOG } 
     <title>{title}</title>
   </head>
   <body>
-    <nav class="border-b border-border bg-background/90">
+    <!-- <nav class="border-b border-border bg-background/90">
       <div class="page min-h-0! py-3! flex-row items-center justify-between">
         <a href="/" class="no-underline font-semibold text-foreground">Pokédex</a>
 
@@ -44,7 +45,8 @@ const { title = siteInfo.title, descriptionOG = siteInfo.description, imageOG } 
           >
         </div>
       </div>
-    </nav>
+    </nav> -->
+    <Navbar />
 
     <main class="page">
       <slot />
