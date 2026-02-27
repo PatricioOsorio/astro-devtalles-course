@@ -12,6 +12,7 @@
     "@tailwindcss/vite": "^4.2.1",
     "@tanstack/query-core": "^5.90.20",
     "astro": "^5.17.1",
+    "astro-icon": "^1.1.5",
     "axios": "^1.13.5",
     "tailwindcss": "^4.2.1"
   }

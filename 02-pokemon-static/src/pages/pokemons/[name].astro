@@ -7,6 +7,7 @@ import { queryKeys } from '@lib/queryKeys';
 import MainLayout from '@layouts/MainLayout.astro';
 import PokemonCardPreview from '@components/pokemons/PokemonCardPreview.astro';
 import Title from '@components/shared/Title.astro';
+import { Icon } from 'astro-icon/components';
 
 export const getStaticPaths = (async () => {
   const { results: pokemons } = await queryClient.fetchQuery({
@@ -36,10 +37,26 @@ const imageSrc = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprit
 ---
 
 <MainLayout title={`Detail | ${name}`} descriptionOG=`Info of ${name}` imageOG={imageSrc}>
-  <!-- <a href="/">Return</a> -->
-  <button class="btn btn--outline self-start" onclick="history.back()">Return</button>
+  <section
+    class="flex items-start justify-between gap-4 rounded-lg border border-border bg-card p-4"
+  >
+    <div class="flex flex-col gap-2">
+      <button type="button" class="btn btn--outline self-start" onclick="history.back()"
+        >Return</button
+      >
+      <Title class="capitalize">{name}</Title>
+    </div>
 
-  <Title>{name}</Title>
+    <button
+      type="button"
+      class="btn btn--ghost btn--sm"
+      aria-label={`Add ${name} to favorites`}
+      title="Add to favorites"
+    >
+      <Icon name="heart-outlined" size={20} class="text-primary" />
+      <Icon name="heart-filled" size={20} class="hidden text-primary" />
+    </button>
+  </section>
 
   <PokemonCardPreview name={name} url={url} />
 
