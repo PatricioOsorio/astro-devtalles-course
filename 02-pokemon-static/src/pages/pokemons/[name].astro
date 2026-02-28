@@ -54,8 +54,8 @@ const imageSrc = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprit
       data-name={name}
       data-id={id}
     >
-      <Icon name="heart-outlined" size={20} class="text-primary" />
-      <Icon name="heart-filled" size={20} class="hidden text-primary" />
+      <Icon name="heart-outlined" data-outlined size={20} class="text-primary" />
+      <Icon name="heart-filled" data-filled size={20} class="hidden text-primary" />
     </button>
   </section>
 
@@ -67,17 +67,46 @@ const imageSrc = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprit
 </MainLayout>
 
 <script>
+  interface IPokemonFavorite {
+    name: string;
+    id: string;
+  }
+
   const handlePageLoaded = () => {
+    let favoritePokemons: IPokemonFavorite[] = JSON.parse(
+      localStorage.getItem('favoritePokemons') || '[]'
+    );
+
     const $btnFavorite = document.querySelector('#btn-favorite') as HTMLButtonElement;
+    const $iconOutlined = document.querySelector('[data-outlined]') as HTMLElement;
+    const $iconFilled = document.querySelector('[data-filled]') as HTMLElement;
 
     if (!$btnFavorite) return;
 
-    const name = $btnFavorite.dataset.name;
-    const id = $btnFavorite.dataset.id;
+    const name = $btnFavorite.dataset.name ?? '';
+    const id = $btnFavorite.dataset.id ?? '';
 
-    $btnFavorite.addEventListener('click', () => {
-      console.log(name);
-    });
+    const toggleFavorite = () => {
+      const isFavorite = favoritePokemons.some((pokemon) => pokemon.name === name);
+
+      if (isFavorite) {
+        favoritePokemons = favoritePokemons.filter((pokemon) => pokemon.name !== name);
+        localStorage.setItem('favoritePokemons', JSON.stringify(favoritePokemons));
+        return;
+      }
+
+      favoritePokemons.push({ name: name, id: id });
+      localStorage.setItem('favoritePokemons', JSON.stringify(favoritePokemons));
+    };
+
+    const handleClickFavorite = () => {
+      $iconFilled.classList.toggle('hidden');
+      $iconOutlined.classList.toggle('hidden');
+
+      toggleFavorite();
+    };
+
+    $btnFavorite.addEventListener('click', handleClickFavorite);
   };
 
   document.addEventListener('astro:page-load', handlePageLoaded);
