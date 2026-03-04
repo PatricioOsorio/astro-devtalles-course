@@ -67,14 +67,12 @@ const imageSrc = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprit
 </MainLayout>
 
 <script>
-  interface IPokemonFavorite {
-    name: string;
-    id: string;
-  }
+  import type { IFavoritePokemon } from '@interfaces/favorite-pokemon';
+  import { LOCAL_STORAGE_KEY } from '@utils/constants';
 
   const handlePageLoaded = () => {
-    let favoritePokemons: IPokemonFavorite[] = JSON.parse(
-      localStorage.getItem('favoritePokemons') || '[]'
+    let favoritePokemons: IFavoritePokemon[] = JSON.parse(
+      localStorage.getItem(LOCAL_STORAGE_KEY.FAVORITE_POKEMONS) || '[]'
     );
 
     const $btnFavorite = document.querySelector('#btn-favorite') as HTMLButtonElement;
@@ -95,12 +93,12 @@ const imageSrc = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprit
 
       if (isFavorite) {
         favoritePokemons = favoritePokemons.filter((pokemon) => pokemon.name !== name);
-        localStorage.setItem('favoritePokemons', JSON.stringify(favoritePokemons));
+        localStorage.setItem(LOCAL_STORAGE_KEY.FAVORITE_POKEMONS, JSON.stringify(favoritePokemons));
         return;
       }
 
-      favoritePokemons.push({ name: name, id: id });
-      localStorage.setItem('favoritePokemons', JSON.stringify(favoritePokemons));
+      favoritePokemons.push({ name: name, id: Number(id) });
+      localStorage.setItem(LOCAL_STORAGE_KEY.FAVORITE_POKEMONS, JSON.stringify(favoritePokemons));
     };
 
     const toggleFavoriteIcon = () => {

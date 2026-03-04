@@ -6,8 +6,6 @@ import MainLayout from "@layouts/MainLayout.astro";
 import PokemonCardPreview from "@components/pokemons/PokemonCardPreview.astro";
 import Title from "@components/shared/Title.astro";
 
-
-
 const { results: pokemons } = await queryClient.fetchQuery({
   queryKey: queryKeys.pokemonList(),
   queryFn: () => getPokemonList(),
