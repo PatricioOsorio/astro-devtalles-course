@@ -3,6 +3,7 @@ const links = [
   { href: '/', text: 'List' },
   { href: '/pokemons/1', text: 'Paginated' },
   { href: '/favorites', text: 'Favorites' },
+  { href: '/islands', text: 'Islands' },
 ];
 
 const { pathname } = Astro.url;
@@ -12,21 +13,6 @@ const { pathname } = Astro.url;
   <div
     class="container flex items-center justify-center p-6 mx-auto text-gray-600 capitalize dark:text-gray-300"
   >
-    <!-- {
-      links.map(({ href, text }) => (
-        <a
-          href={href}
-          class:list={[
-            'hover:no-underline text-gray-800 dark:text-gray-200  mx-1.5 sm:mx-6',
-            {
-              'border-b-2 border-blue-500': pathname === href,
-            },
-          ]}
-        >
-          {text}
-        </a>
-      ))
-    } -->
     {
       links.map(({ href, text }) => (
         <div>
