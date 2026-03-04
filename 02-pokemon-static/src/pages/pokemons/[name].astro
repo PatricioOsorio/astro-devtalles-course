@@ -126,5 +126,6 @@ const imageSrc = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprit
     $btnFavorite.addEventListener('click', handleClickFavorite);
   };
 
-  document.addEventListener('astro:page-load', handlePageLoaded);
+  document.addEventListener('astro:after-swap', handlePageLoaded);
+  document.addEventListener('DOMContentLoaded', handlePageLoaded, { once: true });
 </script>

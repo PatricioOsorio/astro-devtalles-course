@@ -1,14 +1,19 @@
-import { createSignal } from 'solid-js';
+import { createSignal, type Component, type JSXElement } from 'solid-js';
 
-export const Counter = () => {
-  const [counter, setCounter] = createSignal(10);
+export interface ICounterProps {
+  initialValue: number;
+  children?: JSXElement;
+}
+
+export const Counter: Component<ICounterProps> = (props) => {
+  const [counter, setCounter] = createSignal(props.initialValue);
 
   const handleIncrement = () => setCounter((prev) => prev + 1);
   const handleDecrement = () => setCounter((prev) => prev - 1);
 
   return (
     <>
-      <h1>Counter</h1>
+      {props.children}
 
       <p>Value: {counter()}</p>
       <div class="flex gap-4">

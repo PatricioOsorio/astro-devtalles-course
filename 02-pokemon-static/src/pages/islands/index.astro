@@ -2,10 +2,19 @@
 import { Counter } from '@components/counter';
 import Title from '@components/shared/Title.astro';
 import MainLayout from '@layouts/MainLayout.astro';
+
+const counterValue = 10;
 ---
 
 <MainLayout title="Favorite">
   <Title>Islands</Title>
 
-  <Counter client:load />
+  <Counter
+    client:visible
+    initialValue={counterValue}
+    transition:persist="global-counter"
+    transition:persist-props
+  >
+    <Title>Counter island</Title>
+  </Counter>
 </MainLayout>
