@@ -86,8 +86,12 @@ const imageSrc = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprit
     const name = $btnFavorite.dataset.name ?? '';
     const id = $btnFavorite.dataset.id ?? '';
 
-    const toggleFavorite = () => {
-      const isFavorite = favoritePokemons.some((pokemon) => pokemon.name === name);
+    const getIsFavorite = () => {
+      return favoritePokemons.some((pokemon) => pokemon.name === name);
+    };
+
+    const updateFavoriteState = () => {
+      const isFavorite = getIsFavorite();
 
       if (isFavorite) {
         favoritePokemons = favoritePokemons.filter((pokemon) => pokemon.name !== name);
@@ -99,21 +103,28 @@ const imageSrc = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprit
       localStorage.setItem('favoritePokemons', JSON.stringify(favoritePokemons));
     };
 
-    const handleClickFavorite = () => {
-      $iconFilled.classList.toggle('hidden');
-      $iconOutlined.classList.toggle('hidden');
-
-      toggleFavorite();
+    const toggleFavoriteIcon = () => {
+      const isFavorite = getIsFavorite();
+      $iconFilled.classList.toggle('hidden', !isFavorite);
+      $iconOutlined.classList.toggle('hidden', isFavorite);
     };
 
+    const handleClickFavorite = () => {
+      updateFavoriteState();
+      toggleFavoriteIcon();
+    };
+
+    const handleShowFavorite = () => {
+      const isFavorite = getIsFavorite();
+
+      if (!isFavorite) return;
+
+      toggleFavoriteIcon();
+    };
+
+    handleShowFavorite();
     $btnFavorite.addEventListener('click', handleClickFavorite);
   };
 
   document.addEventListener('astro:page-load', handlePageLoaded);
-
-  // document.addEventListener("astro:before-preparation", () => console.log("astro:before-preparation"))
-  // document.addEventListener("astro:after-preparation", () => console.log("astro:after-preparation"))
-  // document.addEventListener("astro:before-swap", () => console.log("astro:before-swap"))
-  // document.addEventListener("astro:after-swap", () => console.log("astro:after-swap"))
-  // document.addEventListener("astro:page-load", () => console.log("astro:page-load"))
 </script>
