@@ -1,8 +1,11 @@
 ---
+import { Counter } from '@components/counter';
 import Title from '@components/shared/Title.astro';
 import MainLayout from '@layouts/MainLayout.astro';
 ---
 
 <MainLayout title="Favorite">
-  <Title>Favorite</Title>
+  <Title>Favorites</Title>
+
+  <Counter client:load />
 </MainLayout>
