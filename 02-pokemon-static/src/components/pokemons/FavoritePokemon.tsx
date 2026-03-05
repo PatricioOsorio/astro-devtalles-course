@@ -35,6 +35,9 @@ export const FavoritePokemon: Component<IFavoritePokemonProps> = ({ pokemon }) =
             width="112"
             height="112"
             class="h-28 w-28 object-contain transition-transform duration-200 group-hover:scale-105"
+            style={{
+              "view-transition-name": `${pokemon.name}-image`
+            }}
           />
           <p class="text-sm font-semibold capitalize">
             #{pokemon.id} - {pokemon.name}

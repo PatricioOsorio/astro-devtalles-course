@@ -16,7 +16,7 @@ export const setLocalStoragePokemon = (pokemons: IFavoritePokemon[]) => {
 };
 
 export const FavoritePokemons = () => {
-  const [pokemons, setPokemons] = createSignal(getLocalStoragePokemons());
+  const [pokemons] = createSignal(getLocalStoragePokemons());
 
   return (
     <section class="grid grid-cols-2 sm:grid-cols-4">
