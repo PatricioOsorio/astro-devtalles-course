@@ -10,18 +10,61 @@
   @apply px-6 py-3 text-base;
 }
 
+/* Filled variants */
 @utility btn--primary {
-  @apply bg-primary text-primary-foreground enabled:opacity-90;
+  @apply bg-primary text-primary-foreground enabled:hover:opacity-90;
+}
+
+@utility btn--secondary {
+  @apply bg-slate-600 text-white enabled:hover:bg-slate-700;
+}
+
+@utility btn--danger {
+  @apply bg-red-600 text-white enabled:hover:bg-red-700;
+}
+
+@utility btn--warning {
+  @apply bg-amber-500 text-black enabled:hover:bg-amber-600;
+}
+
+@utility btn--success {
+  @apply bg-emerald-600 text-white enabled:hover:bg-emerald-700;
+}
+
+/* Base outline */
+@utility btn--outline {
+  @apply border bg-transparent;
+}
+
+/* Outline + semantic color */
+@utility btn--outline-primary {
+  @apply border-primary text-primary enabled:hover:bg-primary/10;
+}
+
+@utility btn--outline-secondary {
+  @apply border-slate-500 text-slate-600 enabled:hover:bg-slate-500/10 dark:text-slate-300;
+}
+
+@utility btn--outline-danger {
+  @apply border-red-600 text-red-600 enabled:hover:bg-red-600/10 dark:text-red-400;
+}
+
+@utility btn--outline-warning {
+  @apply border-amber-500 text-amber-600 enabled:hover:bg-amber-500/10 dark:text-amber-400;
+}
+
+@utility btn--outline-success {
+  @apply border-emerald-600 text-emerald-600 enabled:hover:bg-emerald-600/10 dark:text-emerald-400;
 }
 
 @utility btn--ghost {
-  @apply bg-transparent hover:bg-black/5 dark:hover:bg-white/10;
-}
-
-@utility btn--outline {
-  @apply border border-border bg-transparent hover:bg-black/5 dark:hover:bg-white/10;
+  @apply bg-transparent enabled:hover:bg-black/5 dark:enabled:hover:bg-white/10;
 }
 
 @utility btn--disabled {
   @apply cursor-not-allowed opacity-50;
+}
+
+@utility btn-danger {
+  @apply bg-red-600 text-white enabled:hover:bg-red-700;
 }

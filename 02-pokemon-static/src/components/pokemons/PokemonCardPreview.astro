@@ -7,7 +7,8 @@ interface Props {
 const { name, url } = Astro.props;
 
 const id = url.split('/').at(-2);
-const imageSrc = 'https://placehold.co/600x600/000000/FFF?text=pokemon';
+// const imageSrc = 'https://placehold.co/600x600/000000/FFF?text=pokemon';
+const imageSrc = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`;
 ---
 
 <a
