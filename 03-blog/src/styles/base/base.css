@@ -1,0 +1,7 @@
+@layer base {
+  html,
+  body,
+  #root {
+    min-height: 100%;
+  }
+}
