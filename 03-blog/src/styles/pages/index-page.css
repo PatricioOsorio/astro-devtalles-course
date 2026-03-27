@@ -1,0 +1,63 @@
+@reference '../app.css';
+
+@layer components {
+  .blog-home {
+    @apply relative isolate overflow-hidden rounded-box border border-base-300 bg-base-200/70 px-4 py-8 shadow-sm;
+  }
+
+  .blog-home__container {
+    @apply mx-auto w-full max-w-5xl space-y-6;
+  }
+
+  .blog-home__header {
+    @apply max-w-2xl space-y-3 border-l-4 border-primary/50 pl-4;
+  }
+
+  .blog-home__eyebrow {
+    @apply badge badge-primary badge-outline badge-sm uppercase tracking-[0.14em];
+  }
+
+  .blog-home__title {
+    @apply text-3xl leading-tight text-base-content text-balance;
+  }
+
+  .blog-home__description {
+    @apply max-w-prose text-base leading-relaxed text-base-content/80;
+  }
+
+  .blog-home__grid {
+    @apply grid grid-cols-1 gap-6;
+  }
+
+  @media (min-width: 768px) {
+    .blog-home {
+      @apply px-8 py-10;
+    }
+
+    .blog-home__container {
+      @apply space-y-10;
+    }
+
+    .blog-home__header {
+      @apply pl-5;
+    }
+
+    .blog-home__title {
+      @apply text-4xl;
+    }
+
+    .blog-home__description {
+      @apply text-lg;
+    }
+
+    .blog-home__grid {
+      @apply grid-cols-2;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .blog-home__grid {
+      @apply grid-cols-3;
+    }
+  }
+}

@@ -1,10 +1,41 @@
 ---
 import MainLayout from '@layouts/MainLayout.astro';
+import Post from '@components/Post.astro';
+import type { IPostUI } from '@interfaces/post-ui.interface';
+import '@styles/pages/index-page.css';
 
-import '../styles/app.css';
+const featuredPosts: IPostUI[] = [
+  {
+    title: 'How to use sticky notes for problem solving',
+    excerpt:
+      'A practical framework to map complex ideas, unlock better decisions, and reduce mental overload in your daily workflow.',
+    category: 'Productivity',
+    href: '#',
+    image:
+      'https://images.unsplash.com/photo-1515378960530-7c0da6231fb1?auto=format&fit=crop&w=1200&q=80',
+    imageAlt: 'Desk setup with sticky notes and notebook',
+    publishedAt: '20 October 2019',
+    publishedAtISO: '2019-10-20',
+    readingTime: '6 min read',
+  },
+];
 ---
 
 <MainLayout title="Astro Blog">
-  <h1>Welcome to my Astro Blog</h1>
-  <p>This is a simple blog built with Astro.</p>
+  <section class="blog-home">
+    <div class="blog-home__container">
+      <header class="blog-home__header">
+        <p class="blog-home__eyebrow">Latest Articles</p>
+        <h1 class="blog-home__title">From the blog</h1>
+        <p class="blog-home__description">
+          Notes on writing, systems, and practical workflows to help you think clearly and ship
+          consistently.
+        </p>
+      </header>
+
+      <div class="blog-home__grid">
+        {featuredPosts.map((post) => <Post {...post} />)}
+      </div>
+    </div>
+  </section>
 </MainLayout>
