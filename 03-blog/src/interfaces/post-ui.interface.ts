@@ -1,11 +1,9 @@
 export interface IPostUI {
   title: string;
-  excerpt: string;
-  href: string;
-  category: string;
+  date: string;
+  description: string;
+  author: string;
   image: string;
-  imageAlt: string;
-  publishedAt: string;
-  publishedAtISO: string;
-  readingTime: string;
+  imageAlt?: string;
+  tags: string[];
 }

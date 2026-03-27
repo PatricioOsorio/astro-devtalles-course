@@ -1,45 +1,51 @@
 ---
 import type { IPostUI } from '@interfaces/post-ui.interface';
 import '@styles/components/post-card.css';
+import { Formatter } from '@utils/formatter';
 
-interface Props extends IPostUI {}
+interface Props {
+  frontmatter: IPostUI;
+  url?: string;
+}
 
-const {
-  title,
-  excerpt,
-  href,
-  category,
-  image,
-  imageAlt,
-  publishedAt,
-  publishedAtISO,
-  readingTime,
-} = Astro.props as Props;
+const { frontmatter, url } = Astro.props as Props;
+const { title, date, description, author, image, imageAlt, tags } = frontmatter;
+const postUrl = url ?? '#';
+const visibleTags = tags.slice(0, 2);
+const remainingTags = Math.max(tags.length - visibleTags.length, 0);
 ---
 
 <article class="post-card">
   <figure class="post-card__media">
-    <img class="post-card__image" src={image} alt={imageAlt} loading="lazy" decoding="async" />
+    <img class="post-card__image" src={image} alt={imageAlt ?? title} loading="lazy" decoding="async" />
   </figure>
 
   <div class="post-card__body">
     <div class="post-card__meta-row">
-      <span class="post-card__category">{category}</span>
-      <span class="post-card__reading-time">{readingTime}</span>
+      <span class="post-card__author" title={`By ${author}`}>
+        <span class="post-card__author-text">By {author}</span>
+      </span>
+      <time class="post-card__date" datetime={date}>{Formatter.formatDate(date)}</time>
     </div>
 
     <div class="post-card__content">
       <h2 class="post-card__title">
-        <a href={href} class="post-card__title-link">
+        <a href={postUrl} class="post-card__title-link">
           {title}
         </a>
       </h2>
-      <p class="post-card__excerpt">{excerpt}</p>
+      <p class="post-card__description">{description}</p>
     </div>
 
+    <ul class="post-card__tags-list" aria-label="Post tags">
+      {visibleTags.map((tag) => <li class="post-card__tag">{tag}</li>)}
+      {remainingTags > 0 && <li class="post-card__tag">+{remainingTags}</li>}
+    </ul>
+
     <div class="post-card__footer">
-      <time class="post-card__date" datetime={publishedAtISO}>{publishedAt}</time>
-      <a href={href} class="post-card__cta">Read article</a>
+      <a href={postUrl} class="post-card__cta" aria-label={`Read article: ${title}`}>
+        Read article
+      </a>
     </div>
   </div>
 </article>

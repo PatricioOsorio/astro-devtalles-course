@@ -7,18 +7,23 @@ import '@styles/pages/index-page.css';
 const featuredPosts: IPostUI[] = [
   {
     title: 'How to use sticky notes for problem solving',
-    excerpt:
-      'A practical framework to map complex ideas, unlock better decisions, and reduce mental overload in your daily workflow.',
-    category: 'Productivity',
-    href: '#',
+    date: '2024-06-01',
+    description:
+      'Sticky notes are a powerful tool for problem solving, allowing you to visualize and organize your thoughts. In this article, we will explore how to use sticky notes effectively to tackle complex problems.',
+    author: 'Jane Doe',
     image:
       'https://images.unsplash.com/photo-1515378960530-7c0da6231fb1?auto=format&fit=crop&w=1200&q=80',
     imageAlt: 'Desk setup with sticky notes and notebook',
-    publishedAt: '20 October 2019',
-    publishedAtISO: '2019-10-20',
-    readingTime: '6 min read',
+    tags: ['Productivity', 'Problem Solving'],
   },
 ];
+
+import type { MarkdownInstance } from 'astro';
+const posts = Object.values(
+  import.meta.glob<MarkdownInstance<IPostUI>>('./posts/*.{md,mdx}', { eager: true })
+);
+
+console.log(posts);
 ---
 
 <MainLayout title="Astro Blog">
@@ -34,7 +39,7 @@ const featuredPosts: IPostUI[] = [
       </header>
 
       <div class="blog-home__grid">
-        {featuredPosts.map((post) => <Post {...post} />)}
+        {posts.map((post) => <Post {...post} />)}
       </div>
     </div>
   </section>
