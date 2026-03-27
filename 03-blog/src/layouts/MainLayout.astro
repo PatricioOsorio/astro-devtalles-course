@@ -1,6 +1,7 @@
 ---
 import { ClientRouter } from 'astro:transitions';
 import '../styles/app.css';
+import '@styles/layouts/main-layout.css';
 
 interface Props {
   title: string;
@@ -18,10 +19,25 @@ const { title } = Astro.props as Props;
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
-  <body>
-    <main class="page">
+  <body class="main-layout">
+    <a class="main-layout__skip-link" href="#content">Skip to content</a>
+
+    <div class="main-layout__background" aria-hidden="true"></div>
+
+    <header class="main-layout__header">
+      <div class="main-layout__header-inner">
+        <a href="/" class="main-layout__brand">Astro Blog</a>
+        <p class="main-layout__tagline">Thoughtful notes on writing and workflow</p>
+      </div>
+    </header>
+
+    <main id="content" class="main-layout__main page">
       <slot />
     </main>
+
+    <footer class="main-layout__footer">
+      <p class="main-layout__footer-text">Built with Astro, styled with Tailwind and DaisyUI.</p>
+    </footer>
 
     <ClientRouter />
   </body>

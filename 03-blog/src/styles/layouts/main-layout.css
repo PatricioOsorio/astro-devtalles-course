@@ -1,0 +1,48 @@
+@reference 'tailwindcss';
+@plugin 'daisyui';
+
+@layer components {
+  .main-layout {
+    @apply relative min-h-screen bg-base-100 text-base-content;
+  }
+
+  .main-layout__skip-link {
+    @apply sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-primary focus:px-4 focus:py-2 focus:font-semibold focus:text-primary-content focus:outline-none;
+  }
+
+  .main-layout__background {
+    @apply pointer-events-none fixed inset-0 -z-10;
+    background:
+      radial-gradient(circle at 10% 10%, color-mix(in oklab, var(--color-primary) 14%, transparent) 0%, transparent 38%),
+      radial-gradient(circle at 85% 0%, color-mix(in oklab, var(--color-secondary) 12%, transparent) 0%, transparent 42%),
+      linear-gradient(180deg, var(--color-base-200) 0%, var(--color-base-100) 45%);
+  }
+
+  .main-layout__header {
+    @apply sticky top-0 z-30 border-b border-base-300/80 bg-base-100/80 backdrop-blur supports-[backdrop-filter]:bg-base-100/75;
+  }
+
+  .main-layout__header-inner {
+    @apply mx-auto flex w-full max-w-5xl items-center justify-between gap-4 px-4 py-3 md:px-6;
+  }
+
+  .main-layout__brand {
+    @apply text-lg font-bold tracking-tight text-base-content transition-colors duration-200 hover:text-primary focus:outline-none focus-visible:rounded-sm focus-visible:ring-2 focus-visible:ring-primary;
+  }
+
+  .main-layout__tagline {
+    @apply hidden text-sm text-base-content/70 md:block;
+  }
+
+  .main-layout__main {
+    @apply relative z-10;
+  }
+
+  .main-layout__footer {
+    @apply mx-auto mt-8 w-full max-w-5xl border-t border-base-300 px-4 py-6 md:mt-10 md:px-6;
+  }
+
+  .main-layout__footer-text {
+    @apply text-sm text-base-content/70;
+  }
+}
