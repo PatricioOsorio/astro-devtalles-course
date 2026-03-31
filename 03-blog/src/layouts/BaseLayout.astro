@@ -1,0 +1,58 @@
+---
+import { ClientRouter } from 'astro:transitions';
+import '../styles/app.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title = "Dev Blog", description = "Notes on systems and workflows" } = Astro.props;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+  </head>
+  <body class="min-h-screen">
+    <nav class="sticky top-0 z-50 w-full px-4 py-3">
+      <div class="mx-auto max-w-5xl">
+        <div class="card-glass px-6 py-3 flex items-center justify-between">
+          <a href="/" class="text-xl font-black bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent hover:brightness-110 transition-all">
+            DEV BLOG
+          </a>
+          
+          <div class="flex items-center gap-6">
+            <a href="/" class="text-sm font-medium text-gray-300 hover:text-white transition-colors">Articles</a>
+            <a href="#" class="text-sm font-medium text-gray-300 hover:text-white transition-colors">About</a>
+            <div class="h-4 w-px bg-white/10"></div>
+            <button class="btn-primary-tech btn-xs px-4">Subscribe</button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <main class="page pt-4" id="content">
+      <slot />
+    </main>
+
+    <footer class="mt-auto w-full px-4 py-8">
+      <div class="mx-auto max-w-5xl border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-500">
+        <p>&copy; {new Date().getFullYear()} DEV BLOG. Built with Astro & Design System.</p>
+        <div class="flex gap-6">
+          <a href="#" class="hover:text-primary transition-colors">Privacy</a>
+          <a href="#" class="hover:text-primary transition-colors">RSS</a>
+          <a href="#" class="hover:text-primary transition-colors">Twitter</a>
+        </div>
+      </div>
+    </footer>
+
+    <ClientRouter />
+  </body>
+</html>

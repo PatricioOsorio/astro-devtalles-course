@@ -3,101 +3,66 @@
 
 @layer components {
   .post-card {
-    @apply card h-full overflow-hidden border border-base-300 bg-base-100 shadow-sm transition-all duration-300;
-  }
-
-  .post-card:hover {
-    @apply -translate-y-0.5 border-primary/30 shadow-md;
+    @apply flex h-full flex-col overflow-hidden;
   }
 
   .post-card__media {
-    @apply aspect-[16/10] overflow-hidden bg-base-200;
+    @apply aspect-[16/10] overflow-hidden bg-black/20;
   }
 
   .post-card__image {
-    @apply h-full w-full object-cover transition-transform duration-500;
+    @apply h-full w-full object-cover transition-transform duration-700 ease-out grayscale-[20%] opacity-90;
   }
 
   .post-card:hover .post-card__image {
-    @apply scale-105;
+    @apply scale-110 grayscale-0 opacity-100;
   }
 
   .post-card__body {
-    @apply flex h-full flex-col gap-4 p-6;
+    @apply flex flex-1 flex-col gap-5 p-7;
   }
 
   .post-card__meta-row {
-    @apply flex min-w-0 items-center justify-between gap-3 text-sm;
+    @apply flex items-center justify-between gap-3 text-xs font-medium uppercase tracking-wider text-gray-400;
   }
 
   .post-card__author {
-    @apply badge badge-secondary badge-outline badge-sm min-w-0 max-w-full;
-  }
-
-  .post-card__author-text {
-    @apply block truncate;
+    @apply flex items-center gap-2;
   }
 
   .post-card__content {
-    @apply space-y-2.5;
+    @apply space-y-3;
   }
 
   .post-card__title {
-    @apply text-xl font-semibold leading-snug text-base-content;
+    @apply text-2xl font-black leading-tight text-white transition-colors duration-300;
+  }
+
+  .post-card:hover .post-card__title {
+    @apply text-primary;
   }
 
   .post-card__title-link {
-    @apply cursor-pointer underline decoration-transparent decoration-2 underline-offset-4 transition-all duration-200 hover:text-primary hover:decoration-primary focus:outline-none focus-visible:rounded-sm focus-visible:ring-2 focus-visible:ring-primary;
+    @apply no-underline outline-none;
   }
 
   .post-card__description {
-    @apply text-sm leading-relaxed text-base-content/80 md:text-base;
-  }
-
-  .post-card__footer {
-    @apply mt-auto flex items-center justify-end gap-4 border-t border-base-200 pt-3 text-sm text-base-content/70;
-  }
-
-  .post-card__date {
-    @apply whitespace-nowrap text-base-content/70;
+    @apply line-clamp-3 text-base leading-relaxed text-gray-400;
   }
 
   .post-card__tags-list {
-    @apply mt-1 flex flex-wrap items-center gap-2;
+    @apply mt-auto flex flex-wrap items-center gap-2 pt-4;
   }
 
   .post-card__tag {
-    @apply badge badge-outline badge-sm border-base-300 bg-base-100;
+  }
+
+  .post-card__footer {
+    @apply mt-4 flex items-center justify-between border-t border-white/5 pt-5;
   }
 
   .post-card__cta {
-    @apply btn btn-ghost btn-sm font-medium;
-  }
-
-  .post-card__cta:hover {
-    @apply bg-base-200 text-primary;
-  }
-
-  @media (min-width: 768px) {
-    .post-card__title {
-      @apply text-2xl;
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .post-card,
-    .post-card__image,
-    .post-card__title-link,
-    .post-card__cta {
-      @apply transition-none;
-    }
-
-    .post-card:hover {
-      transform: none;
-    }
-
-    .post-card:hover .post-card__image {
-      transform: none;
-    }
+    @apply btn-sm px-4;
   }
 }
+

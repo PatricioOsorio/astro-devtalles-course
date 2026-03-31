@@ -5,14 +5,14 @@ import '@styles/pages/index-page.css';
 import { getCollection } from 'astro:content';
 
 const posts = await getCollection('posts');
-console.log(posts);
+// console.log(posts);
 ---
 
 <MainLayout title="Astro Blog">
   <section class="blog-home">
     <div class="blog-home__container">
-      <header class="blog-home__header">
-        <p class="blog-home__eyebrow">Latest Articles</p>
+      <header class="blog-home__header fade-up">
+        <p class="blog-home__eyebrow badge-tech">Latest Articles</p>
         <h1 class="blog-home__title">From the blog</h1>
         <p class="blog-home__description">
           Notes on writing, systems, and practical workflows to help you think clearly and ship
@@ -20,9 +20,10 @@ console.log(posts);
         </p>
       </header>
 
-      <div class="blog-home__grid">
+      <div class="blog-home__grid fade-up" style="animation-delay: 0.15s">
         {posts.map((post) => <Post post={post} />)}
       </div>
     </div>
   </section>
+
 </MainLayout>

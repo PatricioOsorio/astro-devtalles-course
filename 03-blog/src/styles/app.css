@@ -8,6 +8,8 @@
 
 @import './theme/daisyui-theme.css';
 
+@import './base/base';
 @import './base/typography.css';
 
 @import './utilities/layout.css';
+@import './utilities/design-system.css';

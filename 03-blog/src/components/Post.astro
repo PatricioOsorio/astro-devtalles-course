@@ -16,7 +16,7 @@ const visibleTags = tags.slice(0, 2);
 const remainingTags = Math.max(tags.length - visibleTags.length, 0);
 ---
 
-<article class="post-card">
+<article class="post-card card-glass">
   <figure class="post-card__media">
     <img class="post-card__image" src={image} alt={title} loading="lazy" decoding="async" />
   </figure>
@@ -31,7 +31,7 @@ const remainingTags = Math.max(tags.length - visibleTags.length, 0);
 
     <div class="post-card__content">
       <h2 class="post-card__title">
-        <a href={postUrl} class="post-card__title-link">
+        <a href={postUrl} class="post-card__title-link underline-none">
           {title}
         </a>
       </h2>
@@ -39,14 +39,15 @@ const remainingTags = Math.max(tags.length - visibleTags.length, 0);
     </div>
 
     <ul class="post-card__tags-list" aria-label="Post tags">
-      {visibleTags.map((tag) => <li class="post-card__tag">{tag}</li>)}
-      {remainingTags > 0 && <li class="post-card__tag">+{remainingTags}</li>}
+      {visibleTags.map((tag) => <li class="post-card__tag badge-tech">{tag}</li>)}
+      {remainingTags > 0 && <li class="post-card__tag badge-tech">+{remainingTags}</li>}
     </ul>
 
     <div class="post-card__footer">
-      <a href={postUrl} class="post-card__cta" aria-label={`Read article: ${title}`}>
+      <a href={postUrl} class="post-card__cta btn-ghost-tech" aria-label={`Read article: ${title}`}>
         Read article
       </a>
     </div>
   </div>
 </article>
+

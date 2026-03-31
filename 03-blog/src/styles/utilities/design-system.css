@@ -1,0 +1,70 @@
+@layer components {
+  /* Tarjeta Tech (sin efecto vidrio) */
+  .card-glass {
+    @apply bg-base-100 border border-white/5 rounded-xl transition-all duration-300 ease-out;
+  }
+  .card-glass:hover {
+    @apply -translate-y-1 border-primary/30;
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+  }
+
+
+  /* Botón primario vibrante */
+  .btn-primary-tech {
+    @apply btn bg-gradient-to-r from-primary to-accent text-white border-0 hover:brightness-110 transition-all;
+  }
+
+  /* Botón fantasma */
+  .btn-ghost-tech {
+    @apply btn btn-ghost border border-primary/50 text-white bg-transparent hover:bg-white/10 hover:border-primary transition-all;
+  }
+
+  /* Badges */
+  .badge-tech {
+    @apply badge bg-primary/20 text-primary border border-primary/30 px-3 py-1 rounded-full text-xs font-semibold;
+  }
+}
+
+@layer utilities {
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .fade-up {
+    animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  @keyframes pulseGlow {
+    0%, 100% { box-shadow: 0 0 8px rgba(255, 255, 255, 0.1); }
+    50% { box-shadow: 0 0 15px rgba(255, 255, 255, 0.3); }
+  }
+  .pulse-glow:hover {
+    animation: pulseGlow 1.5s infinite;
+  }
+
+  /* Custom Prose for tech-dark */
+  .prose-tech {
+    @apply text-gray-300;
+  }
+  .prose-tech h1, .prose-tech h2, .prose-tech h3 {
+    @apply text-white mt-8 mb-4 font-black tracking-tight;
+  }
+  .prose-tech p {
+    @apply mb-6 leading-relaxed;
+  }
+  .prose-tech a {
+    @apply text-primary hover:text-accent underline decoration-primary/30 underline-offset-4 transition-all;
+  }
+  .prose-tech code {
+    @apply bg-white/10 text-accent px-1.5 py-0.5 rounded text-sm font-mono;
+  }
+  .prose-tech pre {
+    @apply bg-black/40 border border-white/10 rounded-xl p-6 my-8 overflow-x-auto shadow-inner;
+  }
+  .prose-tech ul, .prose-tech ol {
+    @apply mb-6 ml-6 space-y-2 list-disc;
+  }
+  .prose-tech strong {
+    @apply text-white font-bold;
+  }
+}
