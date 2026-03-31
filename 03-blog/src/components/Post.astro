@@ -1,23 +1,24 @@
 ---
-import type { IPostUI } from '@interfaces/post-ui.interface';
 import '@styles/components/post-card.css';
 import { Formatter } from '@utils/formatter';
+import type { CollectionEntry } from 'astro:content';
 
 interface Props {
-  frontmatter: IPostUI;
-  url?: string;
+  post: CollectionEntry<'posts'>;
 }
 
-const { frontmatter, url } = Astro.props as Props;
-const { title, date, description, author, image, imageAlt, tags } = frontmatter;
-const postUrl = url ?? '#';
+const { post } = Astro.props as Props;
+const { data } = post;
+
+const { title, date, description, author, image, tags } = data;
+const postUrl = `/posts/${post.slug}`;
 const visibleTags = tags.slice(0, 2);
 const remainingTags = Math.max(tags.length - visibleTags.length, 0);
 ---
 
 <article class="post-card">
   <figure class="post-card__media">
-    <img class="post-card__image" src={image} alt={imageAlt ?? title} loading="lazy" decoding="async" />
+    <img class="post-card__image" src={image} alt={title} loading="lazy" decoding="async" />
   </figure>
 
   <div class="post-card__body">
@@ -25,7 +26,7 @@ const remainingTags = Math.max(tags.length - visibleTags.length, 0);
       <span class="post-card__author" title={`By ${author}`}>
         <span class="post-card__author-text">By {author}</span>
       </span>
-      <time class="post-card__date" datetime={date}>{Formatter.formatDate(date)}</time>
+      <time class="post-card__date">{Formatter.formatDate(date)}</time>
     </div>
 
     <div class="post-card__content">

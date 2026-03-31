@@ -1,5 +1,5 @@
 export class Formatter {
-  static formatDate(date: string): string {
+  static formatDate(date: string | Date): string {
     const options: Intl.DateTimeFormatOptions = {
       year: 'numeric',
       month: 'long',

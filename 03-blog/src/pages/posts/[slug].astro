@@ -1,0 +1,29 @@
+---
+import type { GetStaticPaths } from 'astro';
+import BlogLayout from '@layouts/BlogLayout.astro';
+import { getCollection } from 'astro:content';
+import type { IPostUI } from '@interfaces/post-ui.interface';
+
+export const getStaticPaths = (async () => {
+  const posts = await getCollection('posts');
+
+  const paths = posts.map((post) => ({
+    params: {
+      slug: post.slug,
+    },
+    props: post.data,
+  }));
+  return paths;
+}) satisfies GetStaticPaths;
+
+const { title, date, description, author, image, tags } = Astro.props as IPostUI;
+---
+
+<BlogLayout title={title}>
+  <h1>Post</h1>
+  <p>Date: {date}</p>
+  <p>Description: {description}</p>
+  <p>Author: {author}</p>
+  <img src={image} alt={title} />
+  <p>Tags: {tags.join(', ')}</p>
+</BlogLayout>

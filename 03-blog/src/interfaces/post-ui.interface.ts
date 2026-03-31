@@ -1,6 +1,6 @@
 export interface IPostUI {
   title: string;
-  date: string;
+  date: Date;
   description: string;
   author: string;
   image: string;
